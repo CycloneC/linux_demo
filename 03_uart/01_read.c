@@ -102,10 +102,10 @@ int set_opt(int fd, int nSpeed, int nBits, char nEvent, int nStop)
 	newtio.c_cc[VMIN]  = 1;  /* 读数据时的最小字节数: 没读到这些数据不返回! */
 	newtio.c_cc[VTIME] = 0;  /* 等待第1个数据的时间: 
 	                          * 比如VMIN设为10表示至少读到10个数据才返回,
-	                          * 但是没有数据总不能一直等吧? 可以设置VTIME(单位是10秒)
+	                          * 但是没有数据总不能一直等吧? 可以设置VTIME(单位是100ms)
 	                          * 假设VTIME=1，表示: 
-	                          *    10秒内一个数据都没有的话就返回
-	                          *    如果10秒内至少读到了1个字节，那就继续等待，完全读到VMIN个数据再返回
+	                          *    100ms内一个数据都没有的话就返回
+	                          *    如果100ms内至少读到了1个字节，那就继续等待，完全读到VMIN个数据再返回
 	                          */
 
 	tcflush(fd,TCIFLUSH);
